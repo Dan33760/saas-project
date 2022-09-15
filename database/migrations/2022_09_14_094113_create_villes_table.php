@@ -15,7 +15,10 @@ class CreateVillesTable extends Migration
     {
         Schema::create('villes', function (Blueprint $table) {
             $table->id()->comment('Auto increment ID');
-            $table->foreignId('pays_id')->constrained()->comment('Id of countrie');
+            $table->foreignId('pays_id')
+                    ->constrained()
+                    ->cascadeOnDelete()
+                    ->comment('Id of countrie');
             $table->string('nom_ville')->comment('Town\'s name');
             $table->timestamps();
         });

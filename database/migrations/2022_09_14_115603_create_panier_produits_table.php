@@ -15,8 +15,14 @@ class CreatePanierProduitsTable extends Migration
     {
         Schema::create('panier_produits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('panier_id')->constrained()->comment('Panier Id');
-            $table->foreignId('produit_id')->constrained()->comment('Produit Id');
+            $table->foreignId('panier_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('Panier Id');
+            $table->foreignId('produit_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('Produit Id');
             $table->integer('qu_produit_pa')->comment('Quantite produit Panier');
             $table->decimal('prix_total')->comment('Prix total du Panier');
         });

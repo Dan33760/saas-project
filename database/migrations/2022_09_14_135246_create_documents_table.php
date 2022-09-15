@@ -15,7 +15,10 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->constrained()->comment('Store Id');
+            $table->foreignId('store_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('Store Id');
             $table->string('description')->comment('description du document');
             $table->string('file_name')->comment('Nom du fichier');
             $table->string('file_url')->comment('Stockage du Fichier');

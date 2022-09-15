@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Image;
 use App\Models\Store;
+use App\Models\Ville;
 use App\Models\Panier;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -15,15 +16,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'name',
+        'user_ref',
+        'fname',
+        'lname',
         'email',
         'password',
+        'ville_id',
+        'tel',
+        'adresse',
+        'code_postal',
+        'anniversaire',
+        'genre',
     ];
 
     /**
@@ -67,5 +71,11 @@ class User extends Authenticatable
     public function stores_user()
     {
         return $this->belongsToMany(Store::class, 'store_user', 'user_id', 'store_id')->withPivot('id', 'active', 'created_at');
+    }
+
+    //-- Relation One To Plusieurs(Un User reside dans Une ville)
+    public function ville()
+    {
+        return $this->belongsTo(Ville::class);
     }
 }

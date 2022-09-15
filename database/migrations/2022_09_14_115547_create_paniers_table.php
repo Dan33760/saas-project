@@ -15,7 +15,10 @@ class CreatePaniersTable extends Migration
     {
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->comment('User Id');
+            $table->foreignId('user_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('User Id');
             $table->string('ref_panier')->comment('Code de refenrence');
             $table->string('nom_panier')->comment('Designation Panier');
             $table->tinyInteger('status')->default(0)->comment('0: Non Valider, 1: Valider');
