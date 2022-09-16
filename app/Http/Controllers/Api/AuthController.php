@@ -20,7 +20,7 @@ class AuthController extends Controller
             'first_name' => 'required|min:3|max:50',
             'last_name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|max:255'
+            // 'password' => 'required|min:6|max:255'
         ]);
         
         #2. Erreur de validation
@@ -32,16 +32,22 @@ class AuthController extends Controller
         }
 
         #3. Enregistrement de l'Utilisateur
-        $user = User::create([
-            'user_ref' => $this->generateUserCode(),
-            'fname' => $request->first_name,
-            'lname' => $request->last_namem,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        // $user = User::create([
+        //     'user_ref' => $this->generateUserCode(),
+        //     'fname' => $request->first_name,
+        //     'lname' => $request->last_namem,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password)
+        // ]);
 
-        $image = new Image(['url_image' => 'profil/icon.png']);
-        $user->image()->save($image);
+        #5. Ajouter la photo du profil par defaut
+        // $image = new Image(['url_image' => 'profil/icon.png']);
+        // $user->image()->save($image);
+
+        if($request->ref) {
+            $store = Store::where('ref_store', $request->ref);
+            return $store;
+        }
 
         return response([
             'status' => false,

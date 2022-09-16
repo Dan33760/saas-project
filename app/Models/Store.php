@@ -12,6 +12,16 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'name_store',
+        'ref_store',
+        'url_site',
+        'url_affiliation',
+        'email_notification',
+        'email_assistance'
+    ];
+
     //-- Relation One To Many (Un Store pour Un User)
     public function user()
     {

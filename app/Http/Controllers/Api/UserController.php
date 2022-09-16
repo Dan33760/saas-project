@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Image;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -93,5 +94,26 @@ class UserController extends Controller
             'file' => $fileName
         ]);
         
+    }
+
+    # Ajouter Un client
+    public function addClient(Request $request)
+    {
+
+
+        return response()->json([
+            'code' => $this->generateStoreCode('Fongolab')
+        ], 200);
+    }
+
+
+    //-- Generer le code Store
+    public function generateStoreCode($societe)
+    {
+        $index = Str::remove('.',Str::limit($societe, 2));
+        $aleatCode = Str::random(4);
+        $code = $index.(time() - 1662710000).''.$aleatCode;
+
+        return $code;
     }
 }
