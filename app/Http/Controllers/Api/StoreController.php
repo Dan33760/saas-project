@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Image;
 use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -40,6 +41,10 @@ class StoreController extends Controller
             'email_notification' => $request->email_notification,
             'email_assistance' => $request->email_assistance,
         ]);
+
+        #5. Ajouter la photo du profil par defaut
+        $image = new Image(['url_image' => 'stores/icon.png']);
+        $store->image()->save($image);
 
         return response([
             'status' => true,
@@ -80,6 +85,36 @@ class StoreController extends Controller
             'message' => 'Boutique Ajoutée',
             'store' => $store
         ]);
+    }
+
+    // Modifier l'icone du profil
+    public function changeIcon(Request $request, $idStore)
+    {
+        #1. Verification Du Fichier
+        $validation = Validator::make($request->all(), [
+            'image' => ['required', 'image:jpeg,jpg,png']
+        ]);
+
+        #2. Verifier la validation
+        if($validation->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validation->errors()
+            ], 400);
+        }
+
+        #3. Enregistrer le fichier
+        $fileName = time(). '.' .$request->file('image')->extension();
+        $path = $request->file('image')->storeAs('stores', $fileName, 'public');
+
+        $store = Store::find($idStore);
+        $store->image()->update(['url_image' => $path]);
+
+        return response([
+            'status' => true,
+            'messsage' => 'Icon Changé'
+        ]);
+
     }
 
     // Supprimer un store

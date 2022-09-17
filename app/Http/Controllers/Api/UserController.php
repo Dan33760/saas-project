@@ -83,7 +83,7 @@ class UserController extends Controller
         $image = [];
         $fileName = time(). '.' .$request->file->extension();
         $path = $request->file('file')->storeAs('profil', $fileName, 'public');
-        $image = new Image(['url_image' => $path]);
+        // $image = new Image(['url_image' => $path]);
 
         $user = User::find($request->user()->id);
         $user->image()->update(['url_image' => $path]);

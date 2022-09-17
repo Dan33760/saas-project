@@ -70,7 +70,7 @@ class User extends Authenticatable
     //-- Relation Many To Many (Un User peut Utiliser plusieurs Store)
     public function stores_user()
     {
-        return $this->belongsToMany(Store::class, 'store_user', 'user_id', 'store_id')->withPivot('id', 'active', 'created_at');
+        return $this->belongsToMany(Store::class, 'store_users', 'user_id', 'store_id')->withPivot('id', 'active', 'created_at');
     }
 
     //-- Relation One To Plusieurs(Un User reside dans Une ville)

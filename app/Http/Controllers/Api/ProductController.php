@@ -6,9 +6,16 @@ use App\Models\Produit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\Produit\FirstProduitCollection;
 
 class ProductController extends Controller
 {
+    // Get Products
+    public function getProducts_(Request $request, $idStore)
+    {
+        return new FirstProduitCollection(Produit::where('store_id', $idStore)->get());
+    }
+
     // Add Product
     public function addProduct(Request $request)
     {

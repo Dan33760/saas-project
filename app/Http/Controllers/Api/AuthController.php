@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Image;
+use App\Models\Store;
+use App\Models\StoreUser;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +23,7 @@ class AuthController extends Controller
             'first_name' => 'required|min:3|max:50',
             'last_name' => 'required|min:3|max:50',
             'email' => 'required|email|unique:users,email',
-            // 'password' => 'required|min:6|max:255'
+            'password' => 'required|min:6|max:255'
         ]);
         
         #2. Erreur de validation
@@ -31,27 +34,32 @@ class AuthController extends Controller
             ], 400);
         }
 
-        #3. Enregistrement de l'Utilisateur
-        // $user = User::create([
-        //     'user_ref' => $this->generateUserCode(),
-        //     'fname' => $request->first_name,
-        //     'lname' => $request->last_namem,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password)
-        // ]);
+        #3. Enregistrement User
+        $user = User::create([
+            'user_ref' => $this->generateUserCode(),
+            'fname' => $request->first_name,
+            'lname' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
         #5. Ajouter la photo du profil par defaut
-        // $image = new Image(['url_image' => 'profil/icon.png']);
-        // $user->image()->save($image);
+        $image = new Image(['url_image' => 'profil/icon.png']);
+        $user->image()->save($image);
 
+        #6. Ajouter Un Client
         if($request->ref) {
-            $store = Store::where('ref_store', $request->ref);
-            return $store;
+            $store = Store::where('ref_store', $request->ref)->first();
+            $client = StoreUser::create([
+                'user_id' => $user->id,
+                'store_id' => $store->id
+            ]);
         }
 
         return response([
             'status' => false,
-            'message' => 'Compte creer'
+            'message' => 'Compte creer',
+            'user' => $user
         ]);
     }
 

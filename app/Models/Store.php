@@ -29,9 +29,9 @@ class Store extends Model
     }
 
     //-- Relation Many To Many (Plusieurs Clients Pour Un Store)
-    public function clients()
+    public function users()
     {
-        return $this->hasMany(User::class, 'store_user', 'user_id', 'store_id')
+        return $this->belongsToMany(User::class, 'store_users', 'user_id', 'store_id')
                     ->withPivot('id', 'active', 'created_at');
     }
 
