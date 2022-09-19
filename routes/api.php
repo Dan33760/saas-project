@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->group( function () {
 
 # Routes pour Tenant
 Route::middleware(['auth:sanctum', 'tenant'])->prefix('tenant')->group( function () {
-    Route::post('/add_store', [StoreController::class, 'addStore']);
+    Route::post('/add_store', [StoreController::class, 'addStore'])->withoutMiddleware('tenant');
     Route::post('/update_store/{id}', [StoreController::class, 'updateStore']);
     Route::get('/delete_store/{id}', [StoreController::class, 'deleteStore']);
     Route::get('/active_store/{id}', [StoreController::class, 'activeStore']);

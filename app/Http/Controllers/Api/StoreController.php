@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use App\Models\Image;
 use App\Models\Store;
 use Illuminate\Support\Str;
@@ -46,10 +47,17 @@ class StoreController extends Controller
         $image = new Image(['url_image' => 'stores/icon.png']);
         $store->image()->save($image);
 
+        #6. Enregistrer User en tant que tenant
+        $user = User::find($request->user()->id);
+        if($user->isTenant == "0") {
+            $user->isTenant = "1";
+            $user->save();
+        }
+        
         return response([
             'status' => true,
             'message' => 'Boutique Ajoutée',
-            'store' => $store
+            'store' => $user
         ]);
     }
 
