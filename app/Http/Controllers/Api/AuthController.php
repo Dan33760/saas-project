@@ -11,10 +11,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class AuthController extends Controller
 {
+    use Notifiable;
+
     # Enregistrer un User
     public function registerUser(Request $request)
     {
@@ -36,7 +41,7 @@ class AuthController extends Controller
 
         #3. Enregistrement User
         $user = User::create([
-            'user_ref' => $this->generateUserCode(),
+            'user_ref' => generate_user_code(),
             'fname' => $request->first_name,
             'lname' => $request->last_name,
             'email' => $request->email,
@@ -56,10 +61,13 @@ class AuthController extends Controller
             ]);
         }
 
+        #7. Envoi le mail de verification
+        event(new Registered($user));
+
         return response([
             'status' => false,
             'message' => 'Compte creer',
-            'user' => $user
+            'token' => $user->createToken('User Token')->plainTextToken
         ]);
     }
 
@@ -98,12 +106,21 @@ class AuthController extends Controller
         ]);
     }
 
-    # Genereer Un Code User
-    public function generateUserCode()
+    // Verify Email
+    public function verifyEmail(EmailVerificationRequest $request)
     {
-        $codeAleatoire = Str::upper(Str::random(4));
-        $code = 'FY'.(time() - 1662710000).''.$codeAleatoire;
+        $request->fulfill();
+     
+        return response([
+            'status' => true,
+            'message' => 'Email Verifié'
+        ]);
+    }
 
-        return $code;
+    // Renvoi du mail de verification
+    public function resendEmail(Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        
+        return back()->with('message', 'Verification link sent!');
     }
 }

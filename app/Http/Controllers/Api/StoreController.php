@@ -32,7 +32,7 @@ class StoreController extends Controller
         }
 
         #3. Enregistrer le Store
-        $ref_store = $this->generateStoreCode($request->designation);
+        $ref_store = generate_store_code($request->designation);
         $store = Store::create([
             'user_id' => $request->user()->id,
             'name_store' => $request->designation,
@@ -163,17 +163,51 @@ class StoreController extends Controller
         return response([
             'status' => true,
             'message' => 'Boutique Activée',
-            'store' => $store
         ]);
     }
 
-    //-- Generer le code Store
-    public function generateStoreCode($societe)
+    //-- Desactiver un store
+    public function desactiveStore($idStore)
     {
-        $index = Str::remove('.',Str::limit($societe, 2));
-        $aleatCode = Str::random(4);
-        $code = Str::upper($index).(time() - 1662710000).''.$aleatCode;
+        $store = Store::find($idStore);
 
-        return $code;
+        if(!$store) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Boutique non Trouvée'
+            ], 404);
+        }
+
+        $store->status = 0;
+        $store->save();
+
+        return response([
+            'status' => true,
+            'message' => 'Boutique Desactivée',
+        ]);
     }
+
+    // Valider KYB
+    public function validateKyb($idStore)
+    {
+        $store = Store::find($idStore);
+
+        if(!$store) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Boutique non Trouvée'
+            ], 404);
+        }
+
+        $store->isValidKyb = 1;
+        $store->save();
+
+        // Envoi de mail
+
+        return response([
+            'status' => true,
+            'message' => 'KYB Activée',
+        ]);
+    }
+
 }

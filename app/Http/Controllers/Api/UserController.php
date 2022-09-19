@@ -96,24 +96,45 @@ class UserController extends Controller
         
     }
 
-    # Ajouter Un client
-    public function addClient(Request $request)
+    // Activate User
+    public function activeUser($idUser)
     {
+        $user = User::find($idUser);
 
+        if(!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User Non Trouvé'
+            ], 404);
+        }
 
-        return response()->json([
-            'code' => $this->generateStoreCode('Fongolab')
-        ], 200);
+        $user->status = 1;
+        $user->save();
+
+        return response([
+            'status' => true,
+            'message' => 'User Activé'
+        ]);
     }
 
-
-    //-- Generer le code Store
-    public function generateStoreCode($societe)
+    // Desactivate User
+    public function desactiveUser($idUser)
     {
-        $index = Str::remove('.',Str::limit($societe, 2));
-        $aleatCode = Str::random(4);
-        $code = $index.(time() - 1662710000).''.$aleatCode;
+        $user = User::find($idUser);
 
-        return $code;
+        if(!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User Non Trouvé'
+            ], 404);
+        }
+
+        $user->status = 0;
+        $user->save();
+
+        return response([
+            'status' => true,
+            'message' => 'User Desactivé'
+        ]);
     }
 }

@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Models\Store;
+use App\Models\Panier;
 use App\Models\StoreUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Panier\FirstPanierResource;
 use App\Http\Resources\Client\SecondClientResource;
 use App\Http\Resources\Store\SecondStoreCollection;
+use App\Http\Resources\Panier\FirstPanierCollection;
 use App\Http\Resources\Client\SecondClientCollection;
 
 class ClientController extends Controller
@@ -19,10 +22,36 @@ class ClientController extends Controller
         return new SecondStoreCollection(Store::where('status', true)->get());
     }
 
-    // Recuperer les Stores du tenant
-    public function getStores_(Request $request)
+    // Recuperer les Stores du client
+    public function getStoresClient(Request $request)
     {
         return new SecondClientResource(User::find($request->user()->id));
+    }
+
+    // Recuperer Les Shopping Cart Du client
+    public function getShoppingCarts(Request $request)
+    {
+        return new FirstPanierCollection(Panier::where('user_id', $request->user()->id)->get());
+    }
+
+    // Recuperer Les Shopping Cart Du client
+    public function getShoppingCart(Request $request, $idShopCart)
+    {
+        $where = [
+            'id' => $idShopCart,
+            'user_id' => $request->user()->id
+        ];
+
+        $shopCart = Panier::where($where)->first();
+
+        if(!$shopCart) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Panier introuvable'
+            ], 404);
+        }
+
+        return new FirstPanierResource($shopCart);
     }
 
     // Ajouter un client a un store
@@ -57,6 +86,8 @@ class ClientController extends Controller
             'user_id' => $request->user()->id,
             'store_id' => $store->id
         ]);
+
+        // Envoi d'un mail de notification au Store
 
         return response(['status' => true,'message' => 'Client Ajouté']);
     }

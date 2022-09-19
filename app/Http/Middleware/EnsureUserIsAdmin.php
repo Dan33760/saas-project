@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class EnsureUserIsTenant
+class EnsureUserIsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,14 @@ class EnsureUserIsTenant
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->isTenant == false)
+        if(!$request->user()->isAdmin)
         {
             return response()->json([
                 'status' => false,
-                'message' => 'Vous n\'avez pas acces aux resources'
+                'message' => 'Vous n\'avez pas acces'
             ], 403);
         }
+        
         return $next($request);
     }
 }

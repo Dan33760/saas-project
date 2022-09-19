@@ -12,6 +12,12 @@ class Panier extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'ref_panier',
+        'nom_panier',
+    ];
+
     //-- Relation One To Many (Plusieurs Panier Pour un User)
     public function client()
     {
