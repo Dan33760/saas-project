@@ -103,7 +103,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
         Route::get('/shopping_cart/{id}', [ClientController::class, 'getShoppingCart']);
         Route::get('/products/{id}', [ProductController::class, 'getProducts_']);
     
-        Route::post('/add_shop_cart', [ShoppingCartController::class, 'addShoppingCart']);  
+        Route::post('/add_shop_cart', [ShoppingCartController::class, 'addShoppingCart']); 
+        // Route::post('/add_shop_cart', [ShoppingCartController::class, 'addShoppingCart']); 
     });
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 });
