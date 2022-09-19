@@ -104,7 +104,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
         Route::get('/products/{id}', [ProductController::class, 'getProducts_']);
     
         Route::post('/add_shop_cart', [ShoppingCartController::class, 'addShoppingCart']); 
-        // Route::post('/add_shop_cart', [ShoppingCartController::class, 'addShoppingCart']); 
     });
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 });
