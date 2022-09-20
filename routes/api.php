@@ -92,7 +92,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 
         Route::get('/product/{id}', [TenantController::class, 'getProduct']);   
         Route::get('/stores', [TenantController::class, 'getStores']);
-        Route::get('/store/{id}', [TenantController::class, 'getStore']);
+        Route::get('/store/{id}', [TenantController::class, 'getStore'])->name('store.view');
     });
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // ROUTE POUR LE CLIENT |

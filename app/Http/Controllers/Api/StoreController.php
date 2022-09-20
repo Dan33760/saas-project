@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Store;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Notifications\KybValidated;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -201,12 +202,15 @@ class StoreController extends Controller
 
         $store->isValidKyb = 1;
         $store->save();
+        $user = User::find($store->user_id);
 
+        $user->notify(new KybValidated($user));
         // Envoi de mail
 
         return response([
             'status' => true,
             'message' => 'KYB Activée',
+            'user' => $user
         ]);
     }
 
