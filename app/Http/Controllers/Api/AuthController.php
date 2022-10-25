@@ -23,7 +23,7 @@ class AuthController extends Controller
     # Enregistrer un User
     public function registerUser(Request $request)
     {
-        #1. Validation des donnees
+        // #1. Validation des donnees
         $validation = Validator::make($request->all(), [
             'first_name' => 'required|min:3|max:50',
             'last_name' => 'required|min:3|max:50',
@@ -31,7 +31,7 @@ class AuthController extends Controller
             'password' => 'required|min:6|max:255'
         ]);
         
-        #2. Erreur de validation
+        // #2. Erreur de validation
         if($validation->fails()) {
             return response()->json([
                 'status' => false,
@@ -48,11 +48,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        #5. Ajouter la photo du profil par defaut
+        // #5. Ajouter la photo du profil par defaut
         $image = new Image(['url_image' => 'profil/icon.png']);
         $user->image()->save($image);
 
-        #6. Ajouter Un Client
+        // #6. Ajouter Un Client
         if($request->ref) {
             $store = Store::where('ref_store', $request->ref)->first();
             $client = StoreUser::create([
@@ -61,11 +61,12 @@ class AuthController extends Controller
             ]);
         }
 
-        #7. Envoi le mail de verification
-        event(new Registered($user));
+        // #7. Envoi le mail de verification
+        event(new Registered($user)); 
+         
 
         return response([
-            'status' => false,
+            'status' => true,
             'message' => 'Compte creer',
             'token' => $user->createToken('User Token')->plainTextToken
         ]);

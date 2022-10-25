@@ -137,4 +137,24 @@ class UserController extends Controller
             'message' => 'User Desactivé'
         ]);
     }
+
+    public function addAdmin($idUser)
+    {
+        $user = User::find($idUser);
+
+        if(!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User Non Trouvé'
+            ], 404);
+        }
+
+        $user->isAdmin = 1;
+        $user->save();
+
+        return response([
+            'status' => true,
+            'message' => 'Admin  Ajouté'
+        ]);
+    }
 }

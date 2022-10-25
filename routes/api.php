@@ -44,7 +44,7 @@ Route::post('/email/verification-notification',[AuthController::class, 'resendEm
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-Route::post('/login', [AuthController::class, 'loginUser']);
+Route::post('/login', [AuthController::class, 'loginUser'])->name('user.login');
 Route::post('/register', [AuthController::class, 'registerUser'])->name('user.add');
 Route::post('/add_client', [AuthController::class, 'registerUser']);
 
@@ -68,6 +68,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
         Route::get('/stores', [AdminController::class, 'getStores']);
         Route::get('/store/{id}', [AdminController::class, 'getStore']);
         Route::get('/ative_user/{id}', [UserController::class, 'activeUser']);
+        Route::get('/add_admin/{id}', [UserController::class, 'addAdmin'])->withoutMiddleware('adminAccess');
         Route::get('/active_store/{id}', [StoreController::class, 'activeStore']);
         Route::get('/desactive_store/{id}', [StoreController::class, 'desactiveStore']);
         Route::get('/validate_kyb/{id}', [StoreController::class, 'validateKyb']);
