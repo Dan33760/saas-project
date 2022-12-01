@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['url_image'];
+
     //-- Relation One To One Polymorph
     public function imageable()
     {

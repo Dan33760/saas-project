@@ -12,6 +12,16 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'name_store',
+        'ref_store',
+        'url_site',
+        'url_affiliation',
+        'email_notification',
+        'email_assistance'
+    ];
+
     //-- Relation One To Many (Un Store pour Un User)
     public function user()
     {
@@ -19,9 +29,9 @@ class Store extends Model
     }
 
     //-- Relation Many To Many (Plusieurs Clients Pour Un Store)
-    public function clients()
+    public function users()
     {
-        return $this->hasMany(User::class, 'store_user', 'user_id', 'store_id')
+        return $this->belongsToMany(User::class, 'store_users', 'user_id', 'store_id')
                     ->withPivot('id', 'active', 'created_at');
     }
 

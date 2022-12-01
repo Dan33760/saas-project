@@ -10,6 +10,13 @@ class Document extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'store_id',
+        'description',
+        'file_name',
+        'file_url',
+    ];
+
     //-- Relation One To Many (Un document Pour Un Store)
     public function store()
     {

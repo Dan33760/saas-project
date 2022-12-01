@@ -12,6 +12,14 @@ class Produit extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'store_id',
+        'nom_produit',
+        'pu_produit',
+        'qu_produit',
+        'seuil',
+    ];
+
     //-- Relation One To Many (Plusieurs Produits pour Un Store)
     public function store()
     {

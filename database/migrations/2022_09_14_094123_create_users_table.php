@@ -21,7 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->comment('Adresse Email');
             $table->timestamp('email_verified_at')->nullable()->comment('Adresse Email de verification');
             $table->string('password')->comment('Password');
-            $table->foreignId('ville_id')->constrained()->nullable()->comment('Id de la ville');
+            $table->foreignId('ville_id')
+                    ->nullable()
+                    ->constrained()
+                    ->cascadeOnDelete()
+                    ->comment('Id de la ville');
             $table->string('tel')->nullable()->unique()->comment('Numero de telephone');
             $table->text('adresse')->nullable()->comment('Adresse utilisateur');
             $table->string('code_postal')->nullable()->comment('Code Postal');

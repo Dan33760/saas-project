@@ -15,7 +15,10 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->comment('User Id');
+            $table->foreignId('user_id')
+                    ->nullOnDelete()
+                    ->constrained()
+                    ->comment('User Id');
             $table->string('name_store')->comment('Designation du store');
             $table->string('url_site')->comment('Site Web du store');
             $table->string('url_affiliation')->comment('Lien d\'affiliation');

@@ -15,7 +15,10 @@ class CreateProduitsTable extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->constrained()->comment('Id Store');
+            $table->foreignId('store_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('Id Store');
             $table->string('nom_produit')->comment('Designation du Produit');
             $table->decimal('pu_produit', 8,2)->comment('Prix Unitaire du produit');
             $table->bigInteger('qu_produit')->comment('Quantite du Produit');

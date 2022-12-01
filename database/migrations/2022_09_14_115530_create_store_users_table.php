@@ -15,8 +15,14 @@ class CreateStoreUsersTable extends Migration
     {
         Schema::create('store_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->comment('User Id');
-            $table->foreignId('store_id')->constrained()->comment('Store Id');
+            $table->foreignId('user_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('User Id');
+            $table->foreignId('store_id')
+                    ->cascadeOnDelete()
+                    ->constrained()
+                    ->comment('Store Id');
             $table->boolean('active')->default(1)->comment('0: Non Active, 1: Active');
             $table->timestamps();
         });
