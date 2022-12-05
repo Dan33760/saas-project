@@ -41,7 +41,7 @@ class UserTest extends TestCase
         $response = $this->actingAs($user)
             ->post('api/login', [
                 'email' => 'dan@gmail.com',
-                'password' => '123456'
+                'password' => '1234564'
             ]);
 
         $response->assertStatus(200);

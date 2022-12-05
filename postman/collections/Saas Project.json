@@ -1,0 +1,1742 @@
+{
+	"info": {
+		"_postman_id": "8d6c2945-53e8-4acd-8f83-d37081f3080e",
+		"name": "Saas Project",
+		"description": "**Saas API** est une api de test concu avec laravel 8, l'idee de base est de permettant a des particuliers de creer des boutiques en ligne.\n\nle but de ce projet est de mettre en place un systeme qui donne une vue d'ensemble sur la conception d'une API avec le framework [_laravel 9_](https://laravel.com/docs/9.x), pendant le developpemenet nous avons essayer de couvrir plusieurs points, notemment:\n\n\\*   Routing\n\\*   Laravel Sanctum\n\\*   Eloquent ORM\n\\*   Migration\n\\*   Sedder\n\\*   Resource\n\\*   ...\n    \n\nCliquer [ici](https://github.com/Dan33760/saas-project.git) pour acceder aux codes source",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "20798112-8d6c2945-53e8-4acd-8f83-d37081f3080e"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Get All Users",
+							"id": "04bd02d8-dbd7-4bff-aa4b-9bab179dae3a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								},
+								"description": "Liste de tous les utilisateurs"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User",
+							"id": "63d97f51-ab02-4d3a-a871-55d0f61e7722",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{userToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/user/15",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"15"
+									]
+								},
+								"description": "Reccuperer un seul utilisateur"
+							},
+							"response": []
+						},
+						{
+							"name": "Activate User",
+							"id": "7fe9c070-be46-4c7c-ba64-67e61e4b086b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{userToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/ative_user/15",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"ative_user",
+										"15"
+									]
+								},
+								"description": "Activer le compte d'un utilisateur"
+							},
+							"response": []
+						},
+						{
+							"name": "Desactivate User",
+							"id": "0a3b1db4-3b85-425b-8312-010e77da2c0c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/desative_user/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"desative_user",
+										"6"
+									]
+								},
+								"description": "Desactiver le compte d'un utilisateur avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Add Admin",
+							"id": "a9f72c9c-b1b9-4659-bd7b-69ab804413f6",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/add_admin/15",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"add_admin",
+										"15"
+									]
+								},
+								"description": "Ajout d'un admin, l'utilisateur doit avoir un compte pour qu'il soit admin"
+							},
+							"response": []
+						}
+					],
+					"id": "8698d345-552a-4172-abb6-7a53e51e25a0",
+					"description": "Ici on trouve toutes les requetes de l'admin qui tournent autour des utilisateurs"
+				},
+				{
+					"name": "Store",
+					"item": [
+						{
+							"name": "Get All Stores",
+							"id": "c6e050bb-0d0d-4f7b-a7d5-434d28704d6f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/stores",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"stores"
+									]
+								},
+								"description": "Liste de toutes les boutiques"
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Store",
+							"id": "9b6e0d5f-a9af-4f77-921c-cb09b76d40b1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/store/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"store",
+										"1"
+									]
+								},
+								"description": "Details d'une boutique avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Activate Store",
+							"id": "ea3d9526-9e30-40cb-8854-835c78b75126",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/active_store/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"active_store",
+										"1"
+									]
+								},
+								"description": "Activer une boutique avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Desactivate Store",
+							"id": "bef9600b-483e-48ff-9070-50aea58f5f1b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/desactive_store/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"desactive_store",
+										"1"
+									]
+								},
+								"description": "Desactiver une boutique avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Validate KYB",
+							"id": "1eea0023-3501-4f01-9e4b-f39892b3f5c4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/validate_kyb/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"validate_kyb",
+										"1"
+									]
+								},
+								"description": "Valider le KYB avec l'Id de la boutique"
+							},
+							"response": []
+						}
+					],
+					"id": "4511aef8-1701-461e-af86-237f91353208",
+					"description": "Ici on trouve toutes les requetes de l'admin qui tournent autour des stores"
+				}
+			],
+			"id": "41fce3ab-1dc1-4181-ac8b-e80e78189e5d",
+			"description": "Dans ce dossier se trouvent les requetes que seuls les **admins** peuvent envoyer",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "11|Cx1nN0HI3MI1Rtxpc88YxRn1yCoJCJGYplezjsmq",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "408504a5-095f-4cc7-b566-3740c446c16f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c12a632-db5c-49e8-9a70-e587f14da332",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tenant",
+			"item": [
+				{
+					"name": "Store",
+					"item": [
+						{
+							"name": "Add Store",
+							"id": "84cfa85e-b294-4e88-9d53-315b19a1f397",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "designation",
+											"value": "testStore1",
+											"type": "text"
+										},
+										{
+											"key": "url_site",
+											"value": "testStore1.com",
+											"type": "text"
+										},
+										{
+											"key": "email_notification",
+											"value": "testStore1@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "email_assistance",
+											"value": "testStore1@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tenant/add_store",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"add_store"
+									]
+								},
+								"description": "Creer une boutique"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Store",
+							"id": "2b3653dd-fc01-461f-80ad-296a90e61ccc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "designation",
+											"value": "testStore1",
+											"type": "text"
+										},
+										{
+											"key": "url_site",
+											"value": "testStore1site.com",
+											"type": "text"
+										},
+										{
+											"key": "email_notification",
+											"value": "testStore1@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "email_assistance",
+											"value": "testStore1@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tenant/update_store/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"update_store",
+										"1"
+									]
+								},
+								"description": "Modifier les informations d'une boutique avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Change Icon",
+							"id": "9e4eab65-86af-4108-905d-3619bbefa4e9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/dansi/Downloads/icon (1).png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tenant/change_icon/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"change_icon",
+										"6"
+									]
+								},
+								"description": "Mdifier l'icon de la boutique"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Store",
+							"id": "8128f820-f23d-41ed-b0f9-1731ebf69a79",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/delete_store/2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"delete_store",
+										"2"
+									]
+								},
+								"description": "Supprimer une boutique avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Activate Store",
+							"id": "4eae6b62-6f24-4c2d-bd14-68a03751b30b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/active_store/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"active_store",
+										"1"
+									]
+								},
+								"description": "Activer une boutique avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Stores",
+							"id": "2e2c6dc7-0f33-43d1-8b2f-d10e8dab994e",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/stores",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"stores"
+									]
+								},
+								"description": "Liste des boutiques du tenant connecté"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Store",
+							"id": "3347daf7-514b-4ae3-b06b-3de50ca1ed49",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/store/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"store",
+										"1"
+									]
+								},
+								"description": "Details d'une boutique avec son Id (pour le tenant connecté)"
+							},
+							"response": []
+						}
+					],
+					"id": "2198a2ad-6fbf-4e34-bd20-ce96294e6cae",
+					"description": "Ici on trouve toutes les requetes de l'admin qui tournent autour des stores"
+				},
+				{
+					"name": "KYB",
+					"item": [
+						{
+							"name": "Add KYB",
+							"id": "e735ac5e-e146-48eb-a39a-ea4b239c61a5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "description[]",
+											"value": "carte d'identite",
+											"type": "text"
+										},
+										{
+											"key": "files[]",
+											"type": "file",
+											"src": "/C:/Users/dansi/Downloads/multicolored-artwork-for-pc-q606x6d0kzm717or.jpg"
+										},
+										{
+											"key": "description[]",
+											"value": "Status Du business",
+											"type": "text"
+										},
+										{
+											"key": "files[]",
+											"type": "file",
+											"src": "/C:/Users/dansi/Downloads/334e1597aa5e103860626c2b3c784e49.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tenant/add_kyb",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"add_kyb"
+									]
+								},
+								"description": "Envoyer le KYB"
+							},
+							"response": []
+						}
+					],
+					"id": "3e73da81-3bb7-4916-9f1b-0d4dfa05610f",
+					"description": "Ici on trouve toutes les requetes du **tenant pour le KYB**"
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Add Product",
+							"id": "8b5ae3c2-166b-4914-a79c-d8c14703f2d2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "store",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "nom_produit",
+											"value": "produit4",
+											"type": "text"
+										},
+										{
+											"key": "prix_unit",
+											"value": "650",
+											"type": "text"
+										},
+										{
+											"key": "quantite",
+											"value": "156",
+											"type": "text"
+										},
+										{
+											"key": "seuil",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tenant/add_product",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"add_product"
+									]
+								},
+								"description": "Ajouter un produit dans une boutique"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"id": "3b03d51d-31fb-4965-9a2a-aa3726998bbd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "nom_produit",
+											"value": "produit1Test",
+											"type": "text"
+										},
+										{
+											"key": "prix_unit",
+											"value": "650",
+											"type": "text"
+										},
+										{
+											"key": "quantite",
+											"value": "156",
+											"type": "text"
+										},
+										{
+											"key": "seuil",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/tenant/update_product/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"update_product",
+										"1"
+									]
+								},
+								"description": "Modifier les details du produit avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"id": "f4871c88-69e0-439b-bc35-c78627362211",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/delete_product/3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"delete_product",
+										"3"
+									]
+								},
+								"description": "Supprimer un produit avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Activate Product",
+							"id": "c5b3fc6f-a51a-466c-88b8-ebd8b80b6f25",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/active_product/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"active_product",
+										"1"
+									]
+								},
+								"description": "Activer un produit avec son Id"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product",
+							"id": "b675ee16-0161-4682-be79-35c6ce8479af",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/tenant/product/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"tenant",
+										"product",
+										"1"
+									]
+								},
+								"description": "Details d'un produit avec son Id"
+							},
+							"response": []
+						}
+					],
+					"id": "7c7bea45-fd92-4e47-876d-45474dd2714d",
+					"description": "Ici on trouve toutes les requetes du **tenant pour le produit**"
+				}
+			],
+			"id": "7e3e4d03-48cf-46e0-a851-2a48e64917b7",
+			"description": "Dans ce dossier se trouvent les requetes que seuls les **tenants** peuvent envoyer",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "10|NLKP6gnnANeOLylVzVjLH8wbGUGUnNxQhoJ5DNhq",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5539d0ec-ff05-408e-81b9-a6bbe7191956",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a0b28f6-a3a2-4ed2-9874-5f7d7fa528f1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Shopping Cart",
+					"item": [
+						{
+							"name": "Add Shopping Cart",
+							"id": "e43b863d-31af-410c-8ddb-30c7be1da81d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "designation",
+											"value": "ShopCart2",
+											"type": "text"
+										},
+										{
+											"key": "produit[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "quantite[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "produit[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "quantite[]",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/client/add_shop_cart",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"client",
+										"add_shop_cart"
+									]
+								},
+								"description": "Ajouter un panier"
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Shopping Cart",
+							"id": "3c852419-cefa-4309-8a49-9a8214fb97bb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/client/shopping_carts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"client",
+										"shopping_carts"
+									]
+								},
+								"description": "Liste de tous les paniers du client"
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Shopping Cart",
+							"id": "68942e4c-ca97-4d21-be7b-abe51d1a54c2",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/client/shopping_cart/5",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"client",
+										"shopping_cart",
+										"5"
+									]
+								},
+								"description": "Details du panier avec son Id"
+							},
+							"response": []
+						}
+					],
+					"id": "79220e98-8795-4c26-8cd7-1a1aea12ac63",
+					"description": "Toutes les requetes pour les paniers d'un client"
+				},
+				{
+					"name": "Regidter Customer",
+					"id": "9778f0a2-31f3-4980-b164-9acffa16d96f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "ClientTest1",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "ClientTest1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ClientTest1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register?ref=TE62757087Gw",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							],
+							"query": [
+								{
+									"key": "ref",
+									"value": "TE62757087Gw"
+								}
+							]
+						},
+						"description": "Enregistrer un utilisateur et lui ajouter en tant que client dans une boutique"
+					},
+					"response": []
+				},
+				{
+					"name": "View Stores",
+					"id": "91dc6c8c-4797-4e57-8d33-f6b3f4730088",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/stores",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"stores"
+							]
+						},
+						"description": "Liste de toutes les boutiques"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Store's Client",
+					"id": "22143ca7-fe29-4fe6-91f7-4e293c649c60",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/add_client?ref=TE628910Jz1o",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"add_client"
+							],
+							"query": [
+								{
+									"key": "ref",
+									"value": "TE628910Jz1o"
+								}
+							]
+						},
+						"description": "Ajouter un client a une boutique"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer's Store",
+					"id": "39d090bb-5cbf-495a-ae7a-e40c87720c4a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/client/stores",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"client",
+								"stores"
+							]
+						},
+						"description": "Liste des boutiques aux quelles l'utilisateur est client"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Store's Products",
+					"id": "a4d80def-07a1-42cb-971c-64a004770186",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/client/products/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"client",
+								"products",
+								"1"
+							]
+						},
+						"description": "Details d'un produit avec son Id par le client"
+					},
+					"response": []
+				}
+			],
+			"id": "0c3f77f8-7824-4d01-b62a-075e5b4c7d4b",
+			"description": "Toutes les requetes envoyees par le client d'une boutique",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4505bdf9-63bd-4c17-af9f-112b52b7ce4e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "959b99ca-d758-4c3e-92e9-5859026eb435",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"id": "2b1cb369-9b22-4be9-8b9b-611d7b554c28",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "Danny",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Sivyolo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dansivyolo@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/register",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"register"
+					]
+				},
+				"description": "Ajouter un utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"id": "94778572-fa4c-40b9-90a8-0ee42516ae74",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "dansivyolo@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Se connecter"
+			},
+			"response": []
+		},
+		{
+			"name": "Profil",
+			"id": "a85e9c9e-7c66-4746-9b9f-f09ef390a167",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/profil",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"profil"
+					]
+				},
+				"description": "Details du profil de l'utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profil",
+			"id": "fd0aa164-54b0-4c90-a51a-7f58ad163ae4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "Danny",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Sivyolo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dansivyolo@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "ville",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "telephone",
+							"value": "+ 243 970070247",
+							"type": "text"
+						},
+						{
+							"key": "adresse",
+							"value": "Ngagara Q10",
+							"type": "text"
+						},
+						{
+							"key": "code_postal",
+							"value": "0000000",
+							"type": "text"
+						},
+						{
+							"key": "anniversaire",
+							"value": "2022-09-15",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "Homme",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/update_profil",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"update_profil"
+					]
+				},
+				"description": "Modifier les details de l'utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profil Image",
+			"id": "cbc134f7-6040-4648-a6f7-5fcdb822b2bd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/dansi/Downloads/profil.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/update_image",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"update_image"
+					]
+				},
+				"description": "Modifier la photo de profil de l'utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Email",
+			"id": "c0a092c7-61a1-4e19-b0f3-34a091cbc187",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://saas-api.000webhostapp.com/api/email/verify/15/d37d852f917011190a590ab8b445aef89c9f7dc8?expires=1665567908&signature=efe457f3d22b548838b12d2b4581251cc23cebafd859ef52f063ea74cf535c16",
+					"protocol": "https",
+					"host": [
+						"saas-api",
+						"000webhostapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"email",
+						"verify",
+						"15",
+						"d37d852f917011190a590ab8b445aef89c9f7dc8"
+					],
+					"query": [
+						{
+							"key": "expires",
+							"value": "1665567908"
+						},
+						{
+							"key": "signature",
+							"value": "efe457f3d22b548838b12d2b4581251cc23cebafd859ef52f063ea74cf535c16"
+						}
+					]
+				},
+				"description": "Verifier l'adresse mail de l'utilisateur"
+			},
+			"response": []
+		},
+		{
+			"name": "Resend Verification Email",
+			"id": "edfe7b29-9ad6-4621-9879-4e2a07bbdd82",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "11|Cx1nN0HI3MI1Rtxpc88YxRn1yCoJCJGYplezjsmq",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/email/verification-notification",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"email",
+						"verification-notification"
+					]
+				},
+				"description": "Reenvoyer le mail de verification"
+			},
+			"response": []
+		},
+		{
+			"name": "index",
+			"id": "a7de16d6-8072-4c1e-af96-def4485a090d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://saas-api.000webhostapp.com",
+					"protocol": "https",
+					"host": [
+						"saas-api",
+						"000webhostapp",
+						"com"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e912a38a-ebf9-41a3-96c8-302ef3b2717b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ea4e0602-67f7-4116-a023-00d5a73c81ce",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "87192e4f-c5af-441c-8928-a0f1a7574ffa",
+			"key": "baseUrl",
+			"value": "https://saas-api.000webhostapp.com/api",
+			"type": "string"
+		},
+		{
+			"id": "b6929457-f4bb-46aa-acbb-cf65f64e9033",
+			"key": "userToken",
+			"value": "14|XMye1HjlzthzknYCODTtAdte7ZDW2OZrg6R8zxPg",
+			"type": "string"
+		},
+		{
+			"id": "0a5c17f8-3ce4-4f1e-9e0d-8f0404b6cad6",
+			"key": "tenantToken",
+			"value": "10|NLKP6gnnANeOLylVzVjLH8wbGUGUnNxQhoJ5DNhq",
+			"type": "string"
+		},
+		{
+			"id": "167ce64d-f241-4f99-aaeb-0b904953d69b",
+			"key": "adminToken",
+			"value": "11|Cx1nN0HI3MI1Rtxpc88YxRn1yCoJCJGYplezjsmq",
+			"type": "string"
+		}
+	]
+}
